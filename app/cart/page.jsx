@@ -3,7 +3,6 @@
 import { Anton } from "next/font/google";
 import React, { useContext, useEffect, useState } from "react";
 import { CartContext } from "../components/CartContext";
-import { data } from "@/types/data";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { PulseLoader } from "react-spinners";
@@ -56,8 +55,7 @@ const CartPage = () => {
     fetchCartProducts();
   }, [cartProducts]);
   useEffect(() => {
-    console.log("hi");
-    if (typeof window !== undefined) {
+    if (typeof window !== "undefined") {
       if (window?.location.href.includes("success")) {
         clearCart();
       }
@@ -95,7 +93,7 @@ const CartPage = () => {
     });
     removeProduct(productId, "all");
   };
-  if (typeof window !== undefined) {
+  if (typeof window !== "undefined") {
     if (window.location.href.includes("success")) {
       return (
         <div className="padding py-[30px]">

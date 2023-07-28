@@ -2,26 +2,183 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+.orderInput {
+  border-radius: 5px;
+  border: 2px solid #eee;
+  width: 100%;
+  margin-bottom: 6px;
+  padding: 3px;
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.orderInput:focus {
+  outline: none;
+  border-color: black;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.productsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 30px;
+  padding-top: 20px;
+}
+
+.columnsWrapper {
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  gap: 40px;
+}
+
+.box {
+  @apply bg-[#fff] p-[30px] h-fit;
+}
+
+.padding {
+  @apply px-4 xs:px-5 sm:px-10 lg:px-24 xl:px-32;
+}
+
+.btn {
+  @apply border-none px-[15px] py-[5px] cursor-pointer rounded-md;
+}
+
+.submit-btn {
+  @apply border-none px-[15px] py-[5px] cursor-pointer rounded-md text-white bg-black text-lg;
+}
+
+.link {
+  @apply relative after:absolute after:-bottom-[3px] after:left-0 after:h-[3px] after:rounded-lg after:duration-500 after:bg-customPurple after:transition-all;
+}
+
+.center {
+  transform: translate(-50%, -50%);
+}
+
+.miniImg {
+  @apply z-10 h-16 p-2 rounded-md;
+}
+
+.activeBorder {
+  @apply border border-[#AAAAAA];
+}
+
+.inputBox {
+  @apply relative mb-6;
+}
+
+.inputBox input {
+  @apply w-full p-[10px] border border-gray-300 outline-none text-[#7742FF] text-base rounded-md;
+}
+
+.inputBox label {
+  @apply absolute left-0 p-[10px] pointer-events-none text-base uppercase text-gray-300;
+  transition: all 250ms ease;
+}
+.inputBox input:focus {
+  @apply border-[#a17aff];
+}
+
+.inputBox input:valid ~ .basic,
+.inputBox input:focus ~ .basic {
+  color: #a17aff;
+  transform: translateX(10px) translateY(-12px);
+  font-size: 0.65em;
+  padding: 0 10px;
+  background-color: white;
+  border-left: 1px solid #a17aff;
+  border-right: 1px solid #a17aff;
+  letter-spacing: 0.2em;
+}
+
+.inputBox input:valid ~ .password,
+.inputBox input:focus ~ .password {
+  background-color: #a17aff;
+  transform: translateX(10px) translateY(-12px);
+  font-size: 0.65em;
+  padding: 0 10px;
+  color: white;
+  border-radius: 6px;
+  letter-spacing: 0.2em;
+}
+
+.line {
+  @apply w-full bg-gray-300 h-[1px];
+}
+
+.bubble::before {
+  content: "";
+  top: -5%;
+  left: 40%;
+  width: 50px;
+  height: 50px;
+  transform: rotatez(45deg);
+  border-radius: 6px;
+  background-color: white;
+  pointer-events: none;
+  z-index: -1;
+  position: absolute;
+}
+
+.eye {
+  @apply absolute top-[12px] right-3 cursor-pointer;
+}
+
+.down:hover {
+  transform: translateY(-15px) translateX(-50%);
+}
+
+.payment {
+  @apply list-none py-2 flex flex-col gap-2;
+}
+
+.payment li {
+  @apply flex justify-between items-center bg-[#F6F6F6] h-14 rounded-md px-4 py-2 hover:outline cursor-pointer outline-2 outline-customBlack;
+}
+
+.payment li input {
+  @apply w-4;
+}
+
+.userDataError {
+  @apply text-red-600 ml-2 mt-[2px];
+}
+
+.pattern::before {
+  content: "";
+  position: absolute;
+  top: -22px;
+  left: 0;
+  background-image: linear-gradient(319deg, #222 16px, transparent 17px),
+    linear-gradient(39deg, #222 16px, transparent 17px);
+  background-size: 45px 23px;
+  background-repeat: repeat-x;
+  height: 22px;
+  width: 100%;
+}
+
+.sh {
+  box-shadow: -1px 1px 32px 26px rgba(34, 34, 34, 0.75) inset;
+  -webkit-box-shadow: -1px 1px 32px 26px rgba(34, 34, 34, 0.75) inset;
+  -moz-box-shadow: -1px 1px 32px 26px rgba(34, 34, 34, 0.75) inset;
+}
+
+.sc::-webkit-scrollbar {
+  background-color: #222;
+  width: 3px;
+}
+
+.sc::-webkit-scrollbar-thumb {
+  background-color: white;
+  border-radius: 8px;
+}
+
+.sc::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(206, 206, 206);
+}
+
+.burgerOption {
+  @apply text-3xl;
+}
+
+.frame {
+  @apply absolute bottom-0 left-0 w-full h-[calc(100vh-56px)];
 }

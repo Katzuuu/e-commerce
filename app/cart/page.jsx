@@ -57,8 +57,10 @@ const CartPage = () => {
   }, [cartProducts]);
   useEffect(() => {
     console.log("hi");
-    if (window?.location.href.includes("success")) {
-      clearCart();
+    if (typeof window !== undefined) {
+      if (window?.location.href.includes("success")) {
+        clearCart();
+      }
     }
     if (session) {
       setOrderInfo((prev) => {

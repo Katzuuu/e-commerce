@@ -34,7 +34,7 @@ const poppins = Poppins({
 
 const detailPage = () => {
   const [currentProduct, setCurrentProduct] = useState<data>();
-  const { addProduct } = useContext(CartContext);
+  const { addProduct }: any = useContext(CartContext);
   const pathname = usePathname();
   const splittedPathname = pathname.split("/");
   const id = splittedPathname[2];

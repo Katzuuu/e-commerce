@@ -13,7 +13,7 @@ const CommentSection = ({ productId, font }: any) => {
   const [comments, setComments] = useState([]);
   const [commentText, setCommentText] = useState("");
   const [errMsg, setErrMsg] = useState("");
-  const { data: session } = useSession();
+  const { data: session }: { data: any } = useSession();
   const { setPopUp }: any = useContext(CartContext);
 
   const validate = (value: any) => {

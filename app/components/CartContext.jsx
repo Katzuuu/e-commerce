@@ -1,10 +1,10 @@
 "use client";
 
-import { ReactNode, createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const CartContext = createContext({});
 
-const CartContextProvider = ({ children }: { children: ReactNode }) => {
+const CartContextProvider = ({ children }) => {
   const storage = typeof window !== "undefined" ? window.localStorage : null;
   const [cartProducts, setCartProducts] = useState([]);
   const [popUp, setPopUp] = useState(false);
@@ -15,13 +15,13 @@ const CartContextProvider = ({ children }: { children: ReactNode }) => {
   }, [cartProducts]);
   useEffect(() => {
     if (storage && storage.getItem("cart")) {
-      setCartProducts(JSON.parse(storage.getItem("cart") as string));
+      setCartProducts(JSON.parse(storage.getItem("cart")));
     }
   }, []);
-  function addProduct(productId: string) {
-    setCartProducts((prev: []) => [...prev, productId]);
+  function addProduct(productId) {
+    setCartProducts((prev) => [...prev, productId]);
   }
-  function removeProduct(productId: string, type?: string) {
+  function removeProduct(productId, type) {
     if (type === "all") {
       const newArr = cartProducts.filter((id) => id !== productId);
       if (newArr.length === 0) {
@@ -30,13 +30,13 @@ const CartContextProvider = ({ children }: { children: ReactNode }) => {
       setCartProducts(newArr);
       return;
     }
-    setCartProducts((prev: any) => {
+    setCartProducts((prev) => {
       const pos = prev.indexOf(productId);
       if (pos !== -1) {
         if (cartProducts.length === 1) {
           storage?.removeItem("cart");
         }
-        return prev.filter((value: any, index: any) => index !== pos);
+        return prev.filter((value, index) => index !== pos);
       }
     });
   }

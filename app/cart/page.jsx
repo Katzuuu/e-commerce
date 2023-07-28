@@ -22,7 +22,7 @@ const anton = Anton({
 
 const CartPage = () => {
   const { cartProducts, addProduct, removeProduct, clearCart } =
-    useContext<any>(CartContext);
+    useContext(CartContext);
   const { data: session } = useSession();
   const [noItems, setNoItems] = useState(false);
   const [products, setProducts] = useState([]);
@@ -61,7 +61,7 @@ const CartPage = () => {
       clearCart();
     }
     if (session) {
-      setOrderInfo((prev: any) => {
+      setOrderInfo((prev) => {
         return {
           ...prev,
           name: session.user?.name,
@@ -70,12 +70,12 @@ const CartPage = () => {
       });
     }
   }, [session]);
-  const productQunatity = (type: string, productId: string) => {
+  const productQunatity = (type, productId) => {
     if (type === "increase") {
       addProduct(productId);
     }
     if (type === "decrease") {
-      if (cartProducts.filter((id: string) => id === productId).length === 1) {
+      if (cartProducts.filter((id) => id === productId).length === 1) {
         return;
       }
       removeProduct(productId);
@@ -83,16 +83,12 @@ const CartPage = () => {
   };
   let total = 0;
   for (const productId of cartProducts) {
-    const price = products.find(
-      (product: data) => product._id === productId
-    )?.price;
+    const price = products.find((product) => product._id === productId)?.price;
     total += price;
   }
-  const removeAll = (productId: string) => {
+  const removeAll = (productId) => {
     setProducts(() => {
-      const updated = products.filter(
-        (product: data) => product._id !== productId
-      );
+      const updated = products.filter((product) => product._id !== productId);
       return [...updated];
     });
     removeProduct(productId, "all");
@@ -138,7 +134,7 @@ const CartPage = () => {
                 className="mt-5 overflow-hidden"
               >
                 {products.length > 0 &&
-                  products?.map((product: data) => (
+                  products?.map((product) => (
                     <div
                       className="flex justify-between items-center mb-6"
                       key={product._id}
@@ -159,9 +155,8 @@ const CartPage = () => {
                             <p className="xs:text-xs lg:text-base">
                               quantity:{" "}
                               {
-                                cartProducts.filter(
-                                  (id: string) => id === product._id
-                                ).length
+                                cartProducts.filter((id) => id === product._id)
+                                  .length
                               }
                             </p>
                             <button
@@ -212,9 +207,8 @@ const CartPage = () => {
                       <div className="flex items-center xs:gap-2 lg:gap-16">
                         <p className={`${anton.className} text-xl`}>
                           {product.price *
-                            cartProducts.filter(
-                              (id: string) => id === product._id
-                            ).length}
+                            cartProducts.filter((id) => id === product._id)
+                              .length}
                           €
                         </p>
                         <button

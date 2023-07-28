@@ -1,15 +1,15 @@
-import { NextResponse, NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/product";
 import { Order } from "@/models/Order";
 
 import Stripe from "stripe";
-const stripe = new Stripe(process.env.STRIPE_SK as string, {
+const stripe = new Stripe(process.env.STRIPE_SK, {
   apiVersion: "2022-11-15",
   typescript: true,
 });
 
-export async function POST(req: NextRequest) {
+export async function POST(req) {
   const {
     name,
     email,
@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
       (p) => p._id.toString() === productId
     );
     const quantity =
-      selectedProducts.filter((id: string) => id === productId)?.length || 0;
+      selectedProducts.filter((id) => id === productId)?.length || 0;
     if (quantity > 0 && productInfo) {
       line_items.push({
         quantity,

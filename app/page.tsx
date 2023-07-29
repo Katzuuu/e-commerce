@@ -7,7 +7,7 @@ async function getData() {
   const featuredProductId = "6490a509028d52aa90f5e373";
   try {
     await mongooseConnect();
-    const featuredProduct = await Product.findById(featuredProductId);
+    const featuredProduct = await Product.findById({_id: featuredProductId});
     const newProducts = await Product.find({}, null, {
       sort: { _id: -1 },
       limit: 4,
